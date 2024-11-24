@@ -1,32 +1,15 @@
-import React,{useState, useDeferredValue} from "react";
+import React,{useState, useReducer, useDeferredValue} from "react";
 import UserForm from "./UserForm";
+import { initialState } from "./initialStates";
+import AppReducer from "./appReducer";
 
 let nextId = 4;
-let initialState = [
-    { 
-         id:0, 
-         work:'I need to start workout on daily basis.',
-         done:false,
-         update:false
-     }, 
-     { 
-         id:1, 
-         work:'I have to start practicing driving a car.',
-         done:false,
-         update:false
-     }, 
-     { 
-         id:2, 
-         work:'I have to get a driving licence.',
-         done:false,
-         update:false
-     }
- ]
 
 const FunctionalComponent = ()=>{
     const [inputText, setInputText] = useState('enter text');
-    const [task, setTask] = useState(initialState);
-    const deferedText = useDeferredValue(task);
+    // const [task, setTask] = useState(initialState);
+    const [tasks, dispatch] = useReducer(AppReducer, initialState);
+    const deferedText = useDeferredValue(tasks);
 
     const handleInput = (e)=>{
         setInputText(e.target.value);
@@ -35,57 +18,42 @@ const FunctionalComponent = ()=>{
 
     const handleAddTask = () => {
         {inputText !== '' && 
-            setTask([
-                ...task,
-                {
+            dispatch({
+                    type:"add",
                     id:nextId++,
                     work:inputText,
-                    done:false,
-                    update:false
-                }
-            ]);
+                });
         }
         setInputText('');
     }
 
     const checkBoxChange = (changedItem) => {
-       setTask(task.map((item)=>{
-            if(item.id === changedItem.id){
-                return changedItem;
-            }else{
-                return item;
-            }
-        }))
+        dispatch({
+            type:"update",
+            changedItem:changedItem
+        });
     }
 
-    const handleDelete = (deletedItem)=>{
-        setTask(task.filter((item)=>{
-            if(item.id !== deletedItem){
-                return item;
-            }
-        }))
+    const handleDelete = (deletedItemID)=>{
+        dispatch({
+            type:'delete',
+            id:deletedItemID
+        })
     }
 
     const handleUpdate = (changedUpdate)=>{
-        setTask(task.map((item)=>{
-            if(item.id === changedUpdate.id){
-               return changedUpdate;
-            }else{
-               return item;
-            }
-        }
-    ))
+        dispatch({
+            type:"open update input",
+            changedUpdate:changedUpdate
+        })
     }
 
 
     const handleCompleteUpdate = (updateTask)=>{    
-        setTask(task.map((item)=>{
-            if(item.id === updateTask.id){
-                return updateTask;
-             }else{
-                return item;
-             } 
-        }))
+        dispatch({
+            type:"complete update",
+            updateTask:updateTask
+        })
     }
 
     return (
