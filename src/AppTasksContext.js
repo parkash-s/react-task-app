@@ -1,6 +1,6 @@
 import React,{ createContext, useReducer } from "react";
-export const TasksContext = createContext(11);
-export const TaskDispatchContext = createContext(12);
+export const TasksContext = createContext(null);
+export const TaskDispatchContext = createContext(null);
 
 
 function AppTasksContext({children}){

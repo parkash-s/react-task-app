@@ -1,16 +1,19 @@
-import React, {useContext} from "react";
+import React, {useContext,useState} from "react";
 import Button from "./buttonComponent.js";
 import Input from "./formInput.js";
 import WorkList from "./workList.js";
-import AppTasksContext from "./AppTasksContext.js";
-import { TasksContext } from "./AppTasksContext.js";
 import { TaskDispatchContext } from "./AppTasksContext.js";
 
 let nextId = 4;
 
-const UserForm = ({inputText, handleInput})=>{
+const UserForm = ()=>{
     const dispatch = useContext(TaskDispatchContext);
-    // const newTasks = useContext(TasksContext);
+    const [inputText, setInputText] = useState('enter text');
+
+    const handleInput = (e)=>{
+        setInputText(e.target.value);
+    }
+
     return (
         <> 
                 <form method="post"  className="userForm d-flex flex-column mt-5 mb-4">
@@ -42,13 +45,7 @@ const UserForm = ({inputText, handleInput})=>{
                     </div>
                 </form>
                 
-                    <WorkList 
-                        // Usertask={newTasks} 
-                        // checkBoxChange={checkBoxChange}
-                        // handleDelete={handleDelete}
-                        // handleUpdate={handleUpdate}
-                        // handleCompleteUpdate={handleCompleteUpdate}
-                    />   
+                <WorkList />   
                 
         </>
     );
