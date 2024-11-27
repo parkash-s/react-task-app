@@ -1,5 +1,4 @@
 import React,{useState} from "react";
-// import UserForm from "./UserForm";
 import FunctionalComponent from "./functionalComponent";
 
 const App = ()=>{

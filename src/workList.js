@@ -1,7 +1,10 @@
-import React,{useRef} from "react";
+import React,{useRef, useContext} from "react";
+import { TaskDispatchContext, TasksContext } from "./AppTasksContext";
 
-const WorkList = ({Usertask, checkBoxChange, handleDelete, handleUpdate, handleCompleteUpdate})=>{
+const WorkList = ()=>{
     const myRef = useRef('');
+    const dispatch = useContext(TaskDispatchContext);
+    const Usertask = useContext(TasksContext);
 
     return (
         <ul className="list-group">
@@ -16,9 +19,10 @@ const WorkList = ({Usertask, checkBoxChange, handleDelete, handleUpdate, handleC
                                 name="workDone" 
                                 checked={item.done}
                                 onChange={(e)=>{
-                                checkBoxChange({
-                                    ...item,
-                                    done:e.target.checked
+                                    dispatch({
+                                        type:"update",
+                                        id:item.id,
+                                        done:e.target.checked
                                     });
                                 }}
                                 />
@@ -37,13 +41,14 @@ const WorkList = ({Usertask, checkBoxChange, handleDelete, handleUpdate, handleC
                              <button 
                              className="btn btn-success ms-2 btn-sm fw-bold"
                              onClick={()=>{
-                                handleCompleteUpdate({
-                                    ...item,
+                                dispatch({
+                                    type:"complete update",
+                                    id:item.id,
                                     work:myRef.current.value,
                                     update:false
-                                    })
-                                }
-                            }>
+
+                                })
+                            }}>
                                 complete update
                              </button>
                              </>)
@@ -54,16 +59,20 @@ const WorkList = ({Usertask, checkBoxChange, handleDelete, handleUpdate, handleC
                             className="btn btn-sm btn-success me-2"
                             onClick={
                                 ()=>{
-                                    handleDelete(item.id)
+                                    dispatch({
+                                        type:"delete",
+                                        id:item.id
+                                    })
                                 }
                             }
                         >Delete</button>
                         <button 
                             className="btn btn-sm btn-warning"
                             onClick={
-                                ()=>{
-                                    handleUpdate({
-                                        ...item,
+                                ()=>{ 
+                                    dispatch({
+                                        type:"open update input",
+                                        id:item.id,
                                         update:true
                                     });
                                 }

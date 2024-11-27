@@ -1,10 +1,16 @@
-import React from "react";
+import React, {useContext} from "react";
 import Button from "./buttonComponent.js";
 import Input from "./formInput.js";
 import WorkList from "./workList.js";
+import AppTasksContext from "./AppTasksContext.js";
+import { TasksContext } from "./AppTasksContext.js";
+import { TaskDispatchContext } from "./AppTasksContext.js";
 
+let nextId = 4;
 
-const UserForm = ({inputText, deferedText, handleInput,  handleAddTask, checkBoxChange, handleDelete, handleUpdate, handleCompleteUpdate})=>{
+const UserForm = ({inputText, handleInput})=>{
+    const dispatch = useContext(TaskDispatchContext);
+    // const newTasks = useContext(TasksContext);
     return (
         <> 
                 <form method="post"  className="userForm d-flex flex-column mt-5 mb-4">
@@ -23,19 +29,27 @@ const UserForm = ({inputText, deferedText, handleInput,  handleAddTask, checkBox
                                         className="btn btn-success btn-sm"
                                         name="Add_tasks"
                                         Children="Add tasks"
-                                        clickMe={handleAddTask}
+                                        clickMe={()=>{
+                                            inputText !== '' &&
+                                                dispatch({
+                                                    type:"add",
+                                                    id:nextId++,
+                                                    work:inputText,
+                                                });
+                                        }}
                                 />
                         </label>
                     </div>
                 </form>
-                <WorkList 
-                    Usertask={deferedText} 
-                    checkBoxChange={checkBoxChange}
-                    handleDelete={handleDelete}
-                    handleUpdate={handleUpdate}
-                    handleCompleteUpdate={handleCompleteUpdate}
-                />   
-                  
+                
+                    <WorkList 
+                        // Usertask={newTasks} 
+                        // checkBoxChange={checkBoxChange}
+                        // handleDelete={handleDelete}
+                        // handleUpdate={handleUpdate}
+                        // handleCompleteUpdate={handleCompleteUpdate}
+                    />   
+                
         </>
     );
 }
