@@ -6,14 +6,14 @@ export const TaskDispatchContext = createContext(12);
 function AppTasksContext({children}){
     
     const [newTasks, dispatch] = useReducer(AppReducer, initialState);
-    return (
-        <TasksContext.Provider value={newTasks}>
-            <TaskDispatchContext.Provider value={dispatch}>
-                {children}
-            </TaskDispatchContext.Provider>
-        </TasksContext.Provider>
-    );
-}
+        return (
+            <TasksContext.Provider value={newTasks}>
+                <TaskDispatchContext.Provider value={dispatch}>
+                    {children}
+                </TaskDispatchContext.Provider>
+            </TasksContext.Provider>
+            );
+    }
 
 export default AppTasksContext
 
