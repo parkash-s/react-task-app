@@ -12,8 +12,8 @@ module.exports = {
     module:{
         rules:[
             {
-                test:/\.(.jsx|js)$/,
-                use:'babel-loader',
+                test:/\.(jsx|js)$/,
+                use:['babel-loader'],
                 exclude:'/node_modules/'
             },
             {
@@ -61,8 +61,8 @@ module.exports = {
             template: path.join(__dirname,'public','index.html'),
         })
     ],
-    // resolve:{
-    //     extensions:['.js','.jsx','.json']
-    // },
+    resolve: {
+      extensions: ['*', '.js', '.jsx'],
+    },
 }
 

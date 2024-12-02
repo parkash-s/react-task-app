@@ -8,6 +8,7 @@ const Input = ({type,name,inputVal,handleInput})=>{
             onChange={handleInput} 
             value={inputVal}
             className="form-control"
+            data-testid="input_ele"
         />
     );
 }

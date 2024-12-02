@@ -31,6 +31,7 @@ const UserForm = ()=>{
                                         type="button"
                                         className="btn btn-success btn-sm"
                                         name="Add_tasks"
+                                        dataRole="buttonToAddSingleTask"
                                         Children="Add tasks"
                                         clickMe={()=>{
                                             inputText !== '' &&
