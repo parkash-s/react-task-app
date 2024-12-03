@@ -1,22 +1,26 @@
 import React, {useContext,useState} from "react";
-import Button from "./buttonComponent.js";
-import Input from "./formInput.js";
+import AddTask from "./AddTask.js";
+// import Button from "./buttonComponent.js";
+// import Input from "./formInput.js";
 import WorkList from "./workList.js";
-import { TaskDispatchContext } from "./AppTasksContext.js";
-
-let nextId = 4;
+// import { TaskDispatchContext } from "./AppTasksContext.js";
+import {action_add, getDispatch, add_single_task} from "./app_functions.js";
 
 const UserForm = ()=>{
-    const dispatch = useContext(TaskDispatchContext);
-    const [inputText, setInputText] = useState('enter text');
-
-    const handleInput = (e)=>{
-        setInputText(e.target.value);
-    }
-
+    const dispatch = getDispatch();
+    // const [inputText, setInputText] = useState('enter text');
+    // const handleInput = (e)=>{
+    //     setInputText(e.target.value);
+    // }
+    console.info("rendered");
     return (
         <> 
-                <form method="post"  className="userForm d-flex flex-column mt-5 mb-4">
+                <AddTask
+                    add_single_task = {add_single_task} 
+                    dispatch = {dispatch} 
+                    action_add = {action_add}
+                />
+                {/* <form method="post"  className="userForm d-flex flex-column mt-5 mb-4">
                     <label>
                             <Input 
                                 type="text"
@@ -35,16 +39,13 @@ const UserForm = ()=>{
                                         Children="Add tasks"
                                         clickMe={()=>{
                                             inputText !== '' &&
-                                                dispatch({
-                                                    type:"add",
-                                                    id:nextId++,
-                                                    work:inputText,
-                                                });
-                                        }}
+                                            add_single_task(dispatch,action_add,nextId,inputText)
+                                        }
+                                    }
                                 />
                         </label>
                     </div>
-                </form>
+                </form> */}
                 
                 <WorkList />   
                 

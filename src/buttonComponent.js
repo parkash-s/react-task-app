@@ -4,7 +4,7 @@ const Button = function({type,name,dataRole,className,Children,clickMe}){
         <button 
         type={type} 
         name={name} 
-        data-role={dataRole}
+        role={dataRole}
         className={className}
         onClick={clickMe}>
             {Children}

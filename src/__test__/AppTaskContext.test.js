@@ -106,19 +106,21 @@ describe("Testing Context-provider with Reducer",()=>{
     //     work:"Is Addinga a task is working well?"
 
     // })
-    test('Testing Add tasks case:',()=>{
+    test('Testing Add tasks case:',async ()=>{
         render(
-                <AppTasksContext AppReducer={AppReducer} initialState={initialState}>
+                <AppTasksContext 
+                    AppReducer={AppReducer} 
+                    initialState={initialState}
+                >
                     <UserForm/>
                 </AppTasksContext>
             );
 
-        // let bttn =  screen.getByText('Add tasks');
-
-        // userEvent.click(screen.getByText('Add tasks'));
-        // let txt =  screen.getByText('enter text');
-            // console.log(screen.getByRole('textbox',{value:'enter text'}));
-        expect(screen.getByTestId('input_ele')).toBeNull()
+        let bttn =  screen.getByRole('buttonToAddSingleTask');   
+        await userEvent.click(bttn);
+        console.info(screen.getByRole('workList3').toBe);
+        
+        // expect(screen.getByRole('workList3')).textContent = "workList3"
         // expect(screen.getByRole('button',{value:'Add tasks'})).not.toBeNull()
 
 

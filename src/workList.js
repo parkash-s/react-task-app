@@ -5,6 +5,8 @@ const WorkList = ()=>{
     const myRef = useRef('');
     const dispatch = useContext(TaskDispatchContext);
     const Usertask = useContext(TasksContext);
+    console.info("rendered Worklist");
+    console.info(Usertask);
 
     return (
         <ul className="list-group">
@@ -17,7 +19,7 @@ const WorkList = ()=>{
                             <input 
                                 type="checkbox" 
                                 name="workDone"
-                                data-role={"inputCheckBox"+index} 
+                                role={"inputCheckBox"+index} 
                                 checked={item.done}
                                 onChange={(e)=>{
                                     dispatch({
@@ -32,20 +34,20 @@ const WorkList = ()=>{
                              !item.update ?
                              <span 
                                 className="inline-block p-2 text-break"
-                                data-role={"workList"+index}
+                                role={"workList"+index}
                              >
                              {item.work}
                              </span> : 
                              (<>
                              <input type="text" 
                              ref={myRef}
-                             data-role={"textBoxToUpdate"+index}
+                             role={"textBoxToUpdate"+index}
                              defaultValue={item.work} 
                              className="ms-2"
                              />
                              <button 
                              className="btn btn-success ms-2 btn-sm fw-bold"
-                             data-role={"buttonToCompleteUpdate"+index}
+                             role={"buttonToCompleteUpdate"+index}
                              onClick={()=>{
                                 dispatch({
                                     type:"complete update",
@@ -63,7 +65,7 @@ const WorkList = ()=>{
                     <div className="col-3 d-flex justify-content-end">
                         <button 
                             className="btn btn-sm btn-success me-2"
-                            data-role={"buttonToDelete"+index}
+                            role={"buttonToDelete"+index}
                             onClick={
                                 ()=>{
                                     dispatch({
@@ -75,7 +77,7 @@ const WorkList = ()=>{
                         >Delete</button>
                         <button 
                             className="btn btn-sm btn-warning"
-                            data-role={"buttonToOpenUpdateCheckbox"+index}
+                            role={"buttonToOpenUpdateCheckbox"+index}
                             onClick={
                                 ()=>{ 
                                     dispatch({
