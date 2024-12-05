@@ -1,12 +1,13 @@
 import React from "react";
 
-const Input = ({type,name,inputVal,handleInput})=>{
+const Input = ({type,name,placeholder,handleInput,defaultValue,ref})=>{
     return (
         <input 
             type={type} 
             name={name} 
-            onChange={handleInput} 
-            value={inputVal}
+            placeholder={placeholder}
+            ref={ref}
+            defaultValue={defaultValue}
             className="form-control"
             data-testid="input_ele"
         />

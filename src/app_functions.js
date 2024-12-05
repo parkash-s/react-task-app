@@ -11,14 +11,14 @@ function getDispatch(){
 function action_add(inputText,nextId){
     return {
         type:"add",
-        id:nextId++,
+        id:nextId,
         work:inputText,
     }; 
 }
 
 // This function use dispatch and another function with other parameters
 // to dispatch action.
-function add_single_task(dispatch,action_add,nextId,inputText){
+function add_single_task(dispatch,action_add,inputText,nextId){
     dispatch(action_add(inputText,nextId));
 }
 

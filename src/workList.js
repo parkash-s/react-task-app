@@ -1,12 +1,10 @@
-import React,{useRef, useContext} from "react";
+import React,{useRef, useContext, useState} from "react";
 import { TaskDispatchContext, TasksContext } from "./AppTasksContext";
 
 const WorkList = ()=>{
     const myRef = useRef('');
     const dispatch = useContext(TaskDispatchContext);
     const Usertask = useContext(TasksContext);
-    console.info("rendered Worklist");
-    console.info(Usertask);
 
     return (
         <ul className="list-group">

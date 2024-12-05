@@ -17,7 +17,6 @@ import { initialState } from '../InitialStates';
 
 describe("Testing Context-provider with Reducer",()=>{
     function App_reducer(tasks, action){
-        console.info("App REducer");
         switch (action.type){
             case "add":{
             return [

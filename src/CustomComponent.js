@@ -6,7 +6,6 @@ const CustomComponent = ()=>{
     const handleClick = (e)=>{
         setEname("A button clicked!");
     }
-    // console.info("rendered");
     return (
         <>  
             {<h1 data-testid="hding">{eName}</h1>}

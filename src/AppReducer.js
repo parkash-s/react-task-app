@@ -1,5 +1,4 @@
 export default function AppReducer(tasks, action){
-    console.info("App REducer");
     switch (action.type){
         case "add":{
            return [
