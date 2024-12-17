@@ -14,10 +14,9 @@ const handleInput = (e)=>{
  }
 test('Confirm input is working fine.',() => {
     const val = "some text";
-    
     render(<Input type={'text'} 
             name={'inputText'} 
-            onChange={handleInput} 
+            onchange={handleInput} 
             value={val}
             className="form-control"
             />);    

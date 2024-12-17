@@ -4,9 +4,9 @@ export const TaskDispatchContext = createContext(null);
 
 
 
-function AppTasksContext({children, AppReducer, initialState}){
-    
-    const [newTasks, dispatch] = useReducer(AppReducer, initialState);
+
+function AppTasksContext({children, newTasks, dispatch}){
+    // console.info(newTasks,"===============");
         return (
             <TasksContext.Provider value={newTasks}>
                 <TaskDispatchContext.Provider value={dispatch}>

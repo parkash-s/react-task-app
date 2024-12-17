@@ -1,17 +1,22 @@
 import React,{useState} from "react";
 import FunctionalComponent from "./functionalComponent";
 import AppTasksContext from "./AppTasksContext";
-import CustomComponent from "./CustomComponent";
 import AppReducer from "./AppReducer";
 import { initialState } from "./InitialStates";
+import {getNewStateAndDispatch} from "./app_functions";
 
-const App = ()=>{  
+
+const App = ()=>{ 
+    const [newTasks, dispatch] = getNewStateAndDispatch(AppReducer,initialState);
     return(
-        <AppTasksContext initialState={initialState} AppReducer={AppReducer}>
+        <AppTasksContext
+            newTasks={newTasks}
+            dispatch={dispatch}
+        >
             <div className="container col-6">
                 <FunctionalComponent/>
             </div>
-         </AppTasksContext>
+        </AppTasksContext>
     )
 }
 

@@ -10,7 +10,7 @@ const WorkList = ()=>{
         <ul className="list-group">
            {Usertask.map((item,index)=>{
                 return (
-                <li key={item.id} className="list-group-item d-flex justify-content-between pe-2">
+                <li data-testid="li-element" key={item.id} className="list-group-item d-flex justify-content-between pe-2">
                     <div className="col-9 d-flex justify-content-start align-items-center">
                         <span className="inline-block p-2 pe-3 fw-bold">{index+1}.</span>
                         <label>
@@ -32,20 +32,20 @@ const WorkList = ()=>{
                              !item.update ?
                              <span 
                                 className="inline-block p-2 text-break"
-                                role={"workList"+index}
+                                data-testid={"workList"+index}
                              >
                              {item.work}
                              </span> : 
                              (<>
                              <input type="text" 
                              ref={myRef}
-                             role={"textBoxToUpdate"+index}
+                             data-testid={"textBoxToUpdate"+index}
                              defaultValue={item.work} 
                              className="ms-2"
                              />
                              <button 
                              className="btn btn-success ms-2 btn-sm fw-bold"
-                             role={"buttonToCompleteUpdate"+index}
+                             data-testid={"buttonToCompleteUpdate"+index}
                              onClick={()=>{
                                 dispatch({
                                     type:"complete update",
@@ -63,7 +63,7 @@ const WorkList = ()=>{
                     <div className="col-3 d-flex justify-content-end">
                         <button 
                             className="btn btn-sm btn-success me-2"
-                            role={"buttonToDelete"+index}
+                            data-testid={"buttonToDelete"+index}
                             onClick={
                                 ()=>{
                                     dispatch({
@@ -75,7 +75,7 @@ const WorkList = ()=>{
                         >Delete</button>
                         <button 
                             className="btn btn-sm btn-warning"
-                            role={"buttonToOpenUpdateCheckbox"+index}
+                            data-testid={"buttonToOpenUpdateCheckbox"+index}
                             onClick={
                                 ()=>{ 
                                     dispatch({

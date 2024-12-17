@@ -1,5 +1,12 @@
-import React, {useContext} from "react";
+import React, {useContext, useReducer} from "react";
 import { TaskDispatchContext } from "./AppTasksContext";
+import AppReducer from "./AppReducer";
+import { initialState } from "./InitialStates";
+
+function getNewStateAndDispatch(AppReducer,initialState){
+    const [newTasks, dispatch] = useReducer(AppReducer, initialState);
+    return [newTasks, dispatch];
+}
 
 // This function returns dispatch from provided context.
 function getDispatch(){
@@ -23,4 +30,4 @@ function add_single_task(dispatch,action_add,inputText,nextId){
 }
 
 
-export {action_add, getDispatch, add_single_task}
+export {getNewStateAndDispatch, action_add, getDispatch, add_single_task}
